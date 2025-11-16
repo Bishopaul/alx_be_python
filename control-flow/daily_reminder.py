@@ -13,17 +13,19 @@ while priority not in ["high", "medium", "low"]:
 # Match Case for priority-based messaging
 match priority:
     case "high":
-        reminder = f"Reminder: '{task}' is a high priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a high priority task that requires immediate attention today!")
+        else:
+            print(f"Reminder: '{task}' is a high priority task. Try to complete it as soon as possible.")
     case "medium":
-        reminder = f"Reminder: '{task}' is a medium priority task"
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a medium priority task that requires immediate attention today!")
+        else:
+            print(f"Reminder: '{task}' is a medium priority task. Plan to complete it during the day.")
     case "low":
-        reminder = f"Note: '{task}' is a low priority task. Consider completing it when you have free time."
+        if time_bound == "yes":
+            print(f"Reminder: '{task}' is a low priority task that requires immediate attention today!")
+        else:
+            print(f"Note: '{task}' is a low priority task. Consider completing it when you have free time.")
     case _:
-        reminder = f"Note: '{task}' has an undefined priority."
-
-# Add time-sensitive note if applicable
-if time_bound == "yes" and priority in ["high", "medium"]:
-    reminder += " that requires immediate attention today!"
-
-# Output the customized reminder
-print("\n" + reminder)
+        print(f"Note: '{task}' has an undefined priority.")
